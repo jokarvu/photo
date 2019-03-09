@@ -1,0 +1,23 @@
+//
+// Helper
+// helper classes for different cases
+//
+
+
+// Clearfix for sections that use float property
+
+.floatfix {
+    &:before,
+    &:after {
+        content: '';
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.justify-content-center {
+    display: flex;
+    justify-content: center;
+}
