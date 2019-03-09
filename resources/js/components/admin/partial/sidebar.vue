@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" :class="toggle_sidebar ? 'toggled' : ''" id="sidenav-main">
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white fixed-top-mobile" :class="toggle_sidebar ? 'toggled' : ''" id="sidenav-main">
         <div class="container-fluid">
             <!-- Toggler -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,6 +50,42 @@
                             <i class="fas fa-receipt"></i> Order
                         </router-link>
                     </li>
+
+                    <li class="nav-item">
+                        <router-link tag="a" to="/articles/new" class="nav-link">
+                            <i class="fas fa-map-marked-alt"></i> Location
+                        </router-link>
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link tag="a" to="/articles/new" class="nav-link">
+                            <i class="fas fa-tags"></i> Tags
+                        </router-link>
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link tag="a" to="/articles/new" class="nav-link">
+                            <i class="fas fa-images"></i> Gallery
+                        </router-link>
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link tag="a" to="/articles/new" class="nav-link">
+                            <i class="fas fa-smile"></i> Reviews
+                        </router-link>
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link tag="a" to="/articles/new" class="nav-link">
+                            <i class="fas fa-star"></i> Ratings
+                        </router-link>
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link tag="a" to="/articles/new" class="nav-link">
+                            <i class="fas fa-money-bill-wave-alt"></i> Income
+                        </router-link>
+                    </li>
                 </ul>
                 
                 <!-- Divider -->
@@ -77,6 +113,10 @@ export default {
     }
 }
 @media screen and (max-width: 768px) {
+    .fixed-top-mobile {
+        position: fixed!important;
+        width: 100%;
+    }
     .toggled {
         display: block;
     }

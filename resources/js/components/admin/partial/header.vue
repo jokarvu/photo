@@ -9,7 +9,7 @@
                 <div class="navbar-collapse-header">
                     <div class="row">
                         <div class="col-6 collapse-brand">
-                           
+                            Photography
                         </div>
                         <div class="col-6 collapse-close">
                             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,23 +22,23 @@
 
                 <ul class="navbar-nav ml-lg-auto">
                     <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="#">
+                        <a class="nav-link" href="#">
                             <i class="fab fa-facebook-square"></i>
-                            <span class="nav-link-inner--text d-lg-none">Facebook</span>
+                            <span class="nav-link-inner--text d-lg-none pl-3">Facebook</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-link-icon" href="#">
                             <i class="fab fa-twitter"></i>
-                            <span class="nav-link-inner--text d-lg-none">Twitter</span>
+                            <span class="nav-link-inner--text d-lg-none pl-3">Twitter</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link nav-link-icon" href="#" id="navbar-default_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-cog"></i>
-                            <span class="nav-link-inner--text d-lg-none">Settings</span>
+                            <span class="nav-link-inner--text d-lg-none pl-3">Settings</span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+                        <div class="dropdown-menu dropdown-menu-right pl-4" aria-labelledby="navbar-default_dropdown_1">
                             <a class="dropdown-item" href="#">Profile</a>
                             <a class="dropdown-item" href="#">Privacy</a>
                             <div class="dropdown-divider"></div>

@@ -3,7 +3,7 @@
         <!-- Overview -->
         <h1 class="h1-card">Overview</h1>
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 mb-2 mt-2">
                 <div class="card card-stats mb-4 mb-xl-0 h-100">
                     <div class="card-body">
                         <div class="row">
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 mb-2 mt-2">
                 <div class="card card-stats mb-4 mb-xl-0 h-100">
                     <div class="card-body">
                         <div class="row">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 mb-2 mt-2">
                 <div class="card card-stats mb-4 mb-xl-0 h-100">
                     <div class="card-body">
                         <div class="row">
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 mb-2 mt-2">
                 <div class="card card-stats mb-4 mb-xl-0 h-100">
                     <div class="card-body">
                         <div class="row">
@@ -71,9 +71,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-lg-3">
+            <div class="col-lg-3 mb-2 mt-2">
                 <div class="card card-stats mb-4 mb-xl-0 h-100">
                     <div class="card-body">
                         <div class="row">
@@ -90,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 mb-2 mt-2">
                 <div class="card card-stats mb-4 mb-xl-0 h-100">
                     <div class="card-body">
                         <div class="row">
@@ -107,7 +105,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 mb-2 mt-2">
                 <div class="card card-stats mb-4 mb-xl-0 h-100">
                     <div class="card-body">
                         <div class="row">
@@ -124,7 +122,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 mb-2 mt-2">
                 <div class="card card-stats mb-4 mb-xl-0 h-100">
                     <div class="card-body">
                         <div class="row">

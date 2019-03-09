@@ -2,7 +2,7 @@
     <div>
         <Header></Header>
         <Sidebar :toggle_sidebar="toggle_sidebar"></Sidebar>
-        <div class="main-content pt-2" :style="toggle_sidebar ? 'margin-left: 0' : ''">
+        <div class="main-content pt-2 mobile-padding" :style="toggle_sidebar ? 'margin-left: 0' : ''">
             <div class="header py-6">
                 <!-- Toggle sidebar -->
                 <label class="custom-toggle float-right mr-5 mt-3">
@@ -36,3 +36,11 @@
         components: {Header, Sidebar}
     }
 </script>
+
+<style lang="scss">
+@media screen and (max-width: 768px) {
+    .mobile-padding {
+        padding-top: 5.5em !important;
+    }
+}
+</style>
