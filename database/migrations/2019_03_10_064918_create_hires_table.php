@@ -15,6 +15,12 @@ class CreateHiresTable extends Migration
     {
         Schema::create('hires', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('photographer_id')->unsigned();
+            $table->float('hours');
+            $table->double('wage');
+            $table->bigInteger('coupon_id')->unsigned()->nullable();
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
