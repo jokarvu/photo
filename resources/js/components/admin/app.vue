@@ -2,7 +2,7 @@
     <div>
         <Header></Header>
         <Sidebar :toggle_sidebar="toggle_sidebar"></Sidebar>
-        <div class="main-content pt-2 mobile-padding" :style="toggle_sidebar ? 'margin-left: 0' : ''">
+        <div class="main-content pt-2 mobile-padding pb-5" :style="toggle_sidebar ? 'margin-left: 0' : ''">
             <div class="header py-6">
                 <!-- Toggle sidebar -->
                 <label class="custom-toggle float-right mr-5 mt-3">

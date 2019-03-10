@@ -167,7 +167,64 @@
                 <h1 class="h1-card">Recent Reviews</h1>
                 <div class="card">
                     <div class="card-body">
-                        
+                        <table class="table table-responsive-lg mt-4" id="recent-review">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>User</th>
+                                    <th>Photographer</th>
+                                    <th>Review</th>
+                                    <th>Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Jokar Vũ</td>
+                                    <td>Mito</td>
+                                    <td>Good photographer</td>
+                                    <td>
+                                        <p class="badge badge-primary">4 <i class="fas fa-star"></i></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jokar Vũ</td>
+                                    <td>Mito</td>
+                                    <td>Good photographer</td>
+                                    <td>
+                                        <p class="badge badge-primary">4 <i class="fas fa-star"></i></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Jokar Vũ</td>
+                                    <td>Mito</td>
+                                    <td>Good photographer</td>
+                                    <td>
+                                        <p class="badge badge-primary">4 <i class="fas fa-star"></i></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Jokar Vũ</td>
+                                    <td>Mito</td>
+                                    <td>Good photographer</td>
+                                    <td>
+                                        <p class="badge badge-primary">4 <i class="fas fa-star"></i></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Jokar Vũ</td>
+                                    <td>Mito</td>
+                                    <td>Good photographer</td>
+                                    <td>
+                                        <p class="badge badge-primary">4 <i class="fas fa-star"></i></p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -175,7 +232,64 @@
                 <h1 class="h1-card">Recent Orders</h1>
                 <div class="card">
                     <div class="card-body">
-                        
+                        <table class="table table-responsive-lg mt-4" id="recent-order">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>User</th>
+                                    <th>Photographer</th>
+                                    <th>Status</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Jokar Vũ</td>
+                                    <td>Mito</td>
+                                    <td>
+                                        <p class="badge badge-warning">Pending</p>
+                                    </td>
+                                    <td>Quy Nhơn</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jokar Vũ</td>
+                                    <td>Mito</td>
+                                    <td>
+                                        <p class="badge badge-danger">Cancelled</p>
+                                    </td>
+                                    <td>Quy Nhơn</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Jokar Vũ</td>
+                                    <td>Mito</td>
+                                    <td>
+                                        <p class="badge badge-success">Success</p>
+                                    </td>
+                                    <td>Quy Nhơn</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Jokar Vũ</td>
+                                    <td>Mito</td>
+                                    <td>
+                                        <p class="badge badge-primary">Confirmed</p>
+                                    </td>
+                                    <td>Quy Nhơn</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Jokar Vũ</td>
+                                    <td>Mito</td>
+                                    <td>
+                                        <p class="badge badge-warning">Pending</p>
+                                    </td>
+                                    <td>Quy Nhơn</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -183,3 +297,19 @@
     </div>
 </template>
 
+<script>
+export default {
+    mounted () {
+        $('#recent-review').DataTable({
+            searching: false,
+            paging: false,
+            info: false
+        });
+        $('#recent-order').DataTable({
+            searching: false,
+            paging: false,
+            info: false
+        });
+    }
+}
+</script>
