@@ -11229,24 +11229,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      toggle_sidebar: 0
+      toggle_sidebar: false
     };
   },
   created: function created() {
     if (localStorage.toggle_sidebar) {
       this.toggle_sidebar = JSON.parse(localStorage.getItem('toggle_sidebar'));
+    }
+  },
+  methods: {
+    toggle: function toggle(value) {
+      this.toggle_sidebar = value;
     }
   },
   watch: {
@@ -11705,9 +11703,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['toggle_sidebar'],
-  mounted: function mounted() {}
+  data: function data() {
+    return {
+      checked: this.toggle_sidebar
+    };
+  },
+  mounted: function mounted() {},
+  watch: {
+    checked: function checked(newval, oldval) {
+      this.$emit('toggled', newval);
+    }
+  }
 });
 
 /***/ }),
@@ -16169,7 +16183,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".scrollbar {\n  overflow-y: auto;\n  max-height: 94vh;\n  margin-top: 4rem;\n}\n.hide_sidebar {\n  -webkit-animation-name: margin_change;\n          animation-name: margin_change;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-delay: 0.2s;\n          animation-delay: 0.2s;\n  -webkit-animation-duration: 0.2s;\n          animation-duration: 0.2s;\n}\n@-webkit-keyframes margin_change {\nfrom {\n    margin-left: 250px;\n}\nto {\n    margin-left: 4.5rem;\n}\n}\n@keyframes margin_change {\nfrom {\n    margin-left: 250px;\n}\nto {\n    margin-left: 4.5rem;\n}\n}\n@media screen and (max-width: 768px) {\n.mobile-padding {\n    padding-top: 5.5em !important;\n}\n}", ""]);
+exports.push([module.i, ".scrollbar {\n  overflow-y: auto;\n  max-height: 94vh;\n  margin-top: 4rem;\n}\n@media screen and (min-width: 769px) {\n.hide_sidebar {\n    -webkit-animation-name: margin_change;\n            animation-name: margin_change;\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n    -webkit-animation-delay: 0.2s;\n            animation-delay: 0.2s;\n    -webkit-animation-duration: 0.2s;\n            animation-duration: 0.2s;\n}\n@-webkit-keyframes margin_change {\nfrom {\n      margin-left: 250px;\n}\nto {\n      margin-left: 4.5rem;\n}\n}\n@keyframes margin_change {\nfrom {\n      margin-left: 250px;\n}\nto {\n      margin-left: 4.5rem;\n}\n}\n}\n@media screen and (max-width: 768px) {\n.mobile-padding {\n    padding-top: 5.5em !important;\n}\n.hide_sidebar {\n    margin-left: 0 !important;\n}\n}", ""]);
 
 // exports
 
@@ -16188,7 +16202,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "@media screen and (min-width: 769px) {\n.toggled[data-v-5804e9d3] {\n    -webkit-animation-name: hide_label-data-v-5804e9d3;\n            animation-name: hide_label-data-v-5804e9d3;\n    -webkit-animation-duration: 0.2s;\n            animation-duration: 0.2s;\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n}\n.toggled .label-hidden[data-v-5804e9d3] {\n    display: none;\n}\n@-webkit-keyframes hide_label-data-v-5804e9d3 {\nto {\n      width: 4.5rem;\n}\n}\n@keyframes hide_label-data-v-5804e9d3 {\nto {\n      width: 4.5rem;\n}\n}\n.toggled[data-v-5804e9d3]:hover {\n    -webkit-animation-name: show_label-data-v-5804e9d3;\n            animation-name: show_label-data-v-5804e9d3;\n    -webkit-animation-duration: 0.5s;\n            animation-duration: 0.5s;\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n}\n.toggled:hover .label-hidden[data-v-5804e9d3] {\n    display: block;\n}\n@-webkit-keyframes show_label-data-v-5804e9d3 {\nto {\n      width: 250px;\n}\n}\n@keyframes show_label-data-v-5804e9d3 {\nto {\n      width: 250px;\n}\n}\n}\n@media screen and (max-width: 768px) {\n.fixed-top-mobile[data-v-5804e9d3] {\n    position: fixed !important;\n    width: 100%;\n}\n.toggled[data-v-5804e9d3] {\n    display: block;\n}\n}", ""]);
+exports.push([module.i, "#sidenav-main[data-v-5804e9d3] {\n  overflow-x: hidden;\n}\n@media screen and (min-width: 769px) {\n.header[data-v-5804e9d3] {\n    position: absolute;\n    left: 0.6rem;\n}\n.toggled[data-v-5804e9d3] {\n    -webkit-animation-name: hide_label-data-v-5804e9d3;\n            animation-name: hide_label-data-v-5804e9d3;\n    -webkit-animation-duration: 0.2s;\n            animation-duration: 0.2s;\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n}\n.toggled .label-hidden[data-v-5804e9d3] {\n    display: none;\n}\n@-webkit-keyframes hide_label-data-v-5804e9d3 {\nto {\n      width: 4.5rem;\n}\n}\n@keyframes hide_label-data-v-5804e9d3 {\nto {\n      width: 4.5rem;\n}\n}\n.toggled[data-v-5804e9d3]:hover {\n    -webkit-animation-name: show_label-data-v-5804e9d3;\n            animation-name: show_label-data-v-5804e9d3;\n    -webkit-animation-duration: 0.5s;\n            animation-duration: 0.5s;\n    -webkit-animation-fill-mode: forwards;\n            animation-fill-mode: forwards;\n}\n.toggled:hover .label-hidden[data-v-5804e9d3] {\n    display: block;\n}\n@-webkit-keyframes show_label-data-v-5804e9d3 {\nto {\n      width: 250px;\n}\n}\n@keyframes show_label-data-v-5804e9d3 {\nto {\n      width: 250px;\n}\n}\n}\n@media screen and (max-width: 768px) {\n.fixed-top-mobile[data-v-5804e9d3] {\n    position: fixed !important;\n    width: 100%;\n}\n.toggled[data-v-5804e9d3] {\n    display: block;\n}\n.header[data-v-5804e9d3] {\n    display: none;\n}\n}", ""]);
 
 // exports
 
@@ -62740,7 +62754,10 @@ var render = function() {
     [
       _c("Header"),
       _vm._v(" "),
-      _c("Sidebar", { attrs: { toggle_sidebar: _vm.toggle_sidebar } }),
+      _c("Sidebar", {
+        attrs: { toggle_sidebar: _vm.toggle_sidebar },
+        on: { toggled: _vm.toggle }
+      }),
       _vm._v(" "),
       _c(
         "div",
@@ -62748,59 +62765,7 @@ var render = function() {
           staticClass: "main-content mobile-padding pb-5 scrollbar",
           class: _vm.toggle_sidebar ? "hide_sidebar" : ""
         },
-        [
-          _c("div", { staticClass: "header" }, [
-            _c(
-              "label",
-              { staticClass: "custom-toggle float-right mr-5 mt-3" },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.toggle_sidebar,
-                      expression: "toggle_sidebar"
-                    }
-                  ],
-                  attrs: { type: "checkbox" },
-                  domProps: {
-                    checked: Array.isArray(_vm.toggle_sidebar)
-                      ? _vm._i(_vm.toggle_sidebar, null) > -1
-                      : _vm.toggle_sidebar
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.toggle_sidebar,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (_vm.toggle_sidebar = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (_vm.toggle_sidebar = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.toggle_sidebar = $$c
-                      }
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("span", {
-                  staticClass: "custom-toggle-slider rounded-circle"
-                })
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("router-view")
-        ],
+        [_c("router-view")],
         1
       )
     ],
@@ -63588,7 +63553,7 @@ var render = function() {
       _c("div", { staticClass: "container-fluid" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "" } }, [
+        _c("a", { staticClass: "navbar-brand pr-4", attrs: { href: "" } }, [
           _vm._v("\n            Dashboard\n        ")
         ]),
         _vm._v(" "),
@@ -63825,11 +63790,53 @@ var render = function() {
             _vm._v(" "),
             _c("hr", { staticClass: "my-3" }),
             _vm._v(" "),
-            _c(
-              "h6",
-              { staticClass: "navbar-heading text-muted label-hidden" },
-              [_vm._v("Quick Actions")]
-            )
+            _c("ul", { staticClass: "navbar-nav" }, [
+              _c("li", { staticClass: "nav-item header" }, [
+                _c("label", { staticClass: "custom-toggle" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.checked,
+                        expression: "checked"
+                      }
+                    ],
+                    attrs: { type: "checkbox", id: "hide_sidebar" },
+                    domProps: {
+                      checked: Array.isArray(_vm.checked)
+                        ? _vm._i(_vm.checked, null) > -1
+                        : _vm.checked
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.checked,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.checked = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.checked = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.checked = $$c
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", {
+                    staticClass: "custom-toggle-slider rounded-circle"
+                  })
+                ])
+              ])
+            ])
           ]
         )
       ])

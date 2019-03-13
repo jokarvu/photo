@@ -6,7 +6,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- Brand -->
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand pr-4" href="">
                 Dashboard
             </a>
             <!-- Collapse -->
@@ -100,9 +100,15 @@
                 
                 <!-- Divider -->
                 <hr class="my-3">
-                <!-- Heading -->
-                <h6 class="navbar-heading text-muted label-hidden">Quick Actions</h6>
                 <!-- Navigation -->
+                <ul class="navbar-nav">
+                    <li class="nav-item header">
+                        <label class="custom-toggle">
+                            <input type="checkbox" id="hide_sidebar" v-model="checked">
+                            <span class="custom-toggle-slider rounded-circle"></span>
+                        </label>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -110,14 +116,31 @@
 <script>
 export default {
     props: ['toggle_sidebar'],
+    data () {
+        return {
+            checked: this.toggle_sidebar
+        }
+    },
     mounted () {
 
+    },
+    watch: {
+        checked: function (newval, oldval) {
+            this.$emit('toggled', newval);
+        }
     }
     
 }
 </script>
 <style lang="scss" scoped>
+    #sidenav-main {
+        overflow-x: hidden;
+    }
     @media screen and (min-width: 769px) {
+        .header {
+            position: absolute;
+            left: 0.6rem;
+        }
         .toggled {
             animation-name: hide_label;
             animation-duration: .2s;
@@ -148,6 +171,9 @@ export default {
         }
         .toggled {
             display: block;
+        }
+        .header {
+            display: none;
         }
     }
 </style>
