@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid mt--7">
+    <div class="container-fluid">
         <!-- Overview -->
         <h1 class="h1-card">Overview</h1>
         <div class="row">

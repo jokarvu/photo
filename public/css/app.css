@@ -20145,6 +20145,18 @@ article.is-dark .line-numbers-rows > span:before {
   text-align: right;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #787AF6;
+}
+
+body {
+  overflow: hidden;
+}
+
 article img {
   max-width: 100%;
 }

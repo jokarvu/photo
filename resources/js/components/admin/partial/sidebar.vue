@@ -29,61 +29,71 @@
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <router-link exact tag="a" to="/" class="nav-link active">
-                            <i class="fas fa-chart-line"></i> Dashboard
+                            <i class="fas fa-chart-line"></i> 
+                            <span class="label-hidden">Dashboard</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
                         <router-link tag="a" to="/categories" class="nav-link">
-                            <i class="fas fa-user"></i> User
+                            <i class="fas fa-user"></i> 
+                            <span class="label-hidden">User</span>
                         </router-link>
                     </li>
                     
                     <li class="nav-item">
                         <router-link tag="a" to="/articles/new" class="nav-link">
-                            <i class="fas fa-camera-retro"></i> Photographer
+                            <i class="fas fa-camera-retro"></i> 
+                            <span class="label-hidden">Photographer</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
                         <router-link tag="a" to="/articles/new" class="nav-link">
-                            <i class="fas fa-receipt"></i> Order
+                            <i class="fas fa-receipt"></i> 
+                            <span class="label-hidden">Order</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
                         <router-link tag="a" to="/articles/new" class="nav-link">
-                            <i class="fas fa-map-marked-alt"></i> Location
+                            <i class="fas fa-map-marked-alt"></i> 
+                            <span class="label-hidden">Location</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
                         <router-link tag="a" to="/articles/new" class="nav-link">
-                            <i class="fas fa-tags"></i> Tags
+                            <i class="fas fa-tags"></i> 
+                            <span class="label-hidden">Tags</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
                         <router-link tag="a" to="/articles/new" class="nav-link">
-                            <i class="fas fa-images"></i> Gallery
+                            <i class="fas fa-images"></i> 
+                            <span class="label-hidden">Gallery</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
                         <router-link tag="a" to="/articles/new" class="nav-link">
-                            <i class="fas fa-smile"></i> Reviews
+                            <i class="fas fa-smile"></i> 
+                            <span class="label-hidden">Reviews</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
                         <router-link tag="a" to="/articles/new" class="nav-link">
-                            <i class="fas fa-star"></i> Ratings
+                            <i class="fas fa-star"></i> 
+                            <span class="label-hidden">Ratings</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
                         <router-link tag="a" to="/articles/new" class="nav-link">
-                            <i class="fas fa-money-bill-wave-alt"></i> Income
+                            <i class="fas fa-money-bill-wave-alt"></i> 
+                            <span class="label-hidden">Income</span>
                         </router-link>
                     </li>
                 </ul>
@@ -91,7 +101,7 @@
                 <!-- Divider -->
                 <hr class="my-3">
                 <!-- Heading -->
-                <h6 class="navbar-heading text-muted">Quick Actions</h6>
+                <h6 class="navbar-heading text-muted label-hidden">Quick Actions</h6>
                 <!-- Navigation -->
             </div>
         </div>
@@ -106,19 +116,38 @@ export default {
     
 }
 </script>
-<style>
-@media screen and (min-width: 769px) {
-    .toggled {
-        display: none !important;
+<style lang="scss" scoped>
+    @media screen and (min-width: 769px) {
+        .toggled {
+            animation-name: hide_label;
+            animation-duration: .2s;
+            animation-fill-mode: forwards;
+            .label-hidden {
+                display: none;
+            }
+            @keyframes hide_label {
+                to {width: 4.5rem}
+            }
+        }
+        .toggled:hover {
+            animation-name: show_label;
+            animation-duration: .5s;
+            animation-fill-mode: forwards;
+            .label-hidden {
+                display: block;
+            }
+            @keyframes show_label {
+                to {width: 250px}
+            }
+        }
     }
-}
-@media screen and (max-width: 768px) {
-    .fixed-top-mobile {
-        position: fixed!important;
-        width: 100%;
+    @media screen and (max-width: 768px) {
+        .fixed-top-mobile {
+            position: fixed!important;
+            width: 100%;
+        }
+        .toggled {
+            display: block;
+        }
     }
-    .toggled {
-        display: block;
-    }
-}
 </style>
