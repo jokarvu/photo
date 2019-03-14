@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'api'], function () {
+    Route::resource('permission', 'PermissionController');
+});
+
 Route::get('/{admin?}', function () {
     return view('dashboard');
 })->where('admin', '[\/\.\w\-]+');

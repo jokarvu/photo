@@ -3,12 +3,18 @@ import VueRouter from 'vue-router'
 import App from './components/admin/app'
 import Dashboard from './components/admin/pages/dashboard'
 
+// Permission
+import AddPermission from './components/admin/pages/permission/add'
+import EditPermission from './components/admin/pages/permission/edit'
+
 const routes = [
     {
         path: '/admin',
         component: App,
         children: [
-            {path: '/', component: Dashboard}
+            {path: '/', component: Dashboard},
+            {path: 'permission/add', component: AddPermission},
+            {path: 'permission/:name/edit', component: EditPermission, name: 'EditPermission'}
         ]
     }
 ]

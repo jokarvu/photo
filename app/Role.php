@@ -15,4 +15,10 @@ class Role extends Model
     {
         return $this->belongsToMany(Permission::class);
     }
+
+    // Mutators
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = str_slug($value);
+    }
 }
