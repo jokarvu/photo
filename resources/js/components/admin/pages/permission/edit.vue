@@ -41,8 +41,8 @@ export default {
             var id = this.permission.id;
             console.log(this.permission.name);
             axios.patch('/api/admin/permission/' + id, this.permission).then(res => {
-                console.log('ok');
                 toastr.success(res.data.message);
+                this.$router.go(-1);
             }).catch(errors => {
                 console.log(errors);
             })

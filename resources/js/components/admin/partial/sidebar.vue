@@ -28,14 +28,14 @@
                 <!-- Navigation -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <router-link exact tag="a" to="/" class="nav-link active">
+                        <router-link exact tag="a" to="/admin" class="nav-link">
                             <i class="fas fa-chart-line"></i> 
                             <span class="label-hidden">Dashboard</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
-                        <router-link tag="a" to="/categories" class="nav-link">
+                        <router-link tag="a" to="/admin/user" class="nav-link">
                             <i class="fas fa-user"></i> 
                             <span class="label-hidden">User</span>
                         </router-link>
@@ -96,19 +96,31 @@
                             <span class="label-hidden">Income</span>
                         </router-link>
                     </li>
+
+                    <li class="nav-item">
+                        <router-link tag="a" to="/admin/permission" class="nav-link">
+                            <i class="fas fa-lock"></i> 
+                            <span class="label-hidden">Permission</span>
+                        </router-link>
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link tag="a" to="/admin/role" class="nav-link">
+                            <i class="fas fa-users"></i> 
+                            <span class="label-hidden">Group</span>
+                        </router-link>
+                    </li>
                 </ul>
                 
                 <!-- Divider -->
                 <hr class="my-3">
                 <!-- Navigation -->
-                <ul class="navbar-nav">
-                    <li class="nav-item header">
-                        <label class="custom-toggle">
-                            <input type="checkbox" id="hide_sidebar" v-model="checked">
-                            <span class="custom-toggle-slider rounded-circle"></span>
-                        </label>
-                    </li>
-                </ul>
+                <div class="col-lg-12 col-sm-12 text-center fix-toggle-button">
+                    <label class="custom-toggle">
+                        <input type="checkbox" id="hide_sidebar" v-model="checked">
+                        <span class="custom-toggle-slider rounded-circle"></span>
+                    </label>
+                </div>
             </div>
         </div>
     </nav>
@@ -142,6 +154,9 @@ export default {
             left: 0.6rem;
         }
         .toggled {
+            .fix-toggle-button {
+                margin-left: -1.8rem;
+            }
             animation-name: hide_label;
             animation-duration: .2s;
             animation-fill-mode: forwards;
@@ -156,6 +171,9 @@ export default {
             animation-name: show_label;
             animation-duration: .5s;
             animation-fill-mode: forwards;
+            .fix-toggle-button {
+                margin-left: 0;
+            }
             .label-hidden {
                 display: block;
             }

@@ -32,13 +32,11 @@ export default {
     methods: {
         addPermission () {
             axios.post('/api/admin/permission', this.permission).then(res => {
-                console.log('ok');
-            }).catch(errors => {
-                console.log(errors);
+                toastr.success(res.data.message);
+                this.$router.go(-1);
+            }).catch(error => {
+                console.log(error.response.data.message);
             })
-        },
-        goback () {
-            this.$router.go(-1);
         }
     }
 }

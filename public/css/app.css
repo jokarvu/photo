@@ -6227,6 +6227,7 @@ button.close {
   position: relative;
   flex: 1 1 auto;
   padding: 1.5rem;
+  white-space: normal;
 }
 
 .modal-footer {
@@ -20147,6 +20148,7 @@ article.is-dark .line-numbers-rows > span:before {
 
 ::-webkit-scrollbar {
   width: 5px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -20226,7 +20228,7 @@ article blockquote .flag svg {
 }
 
 #toast-container {
-  margin-top: 4.5rem;
+  margin-top: 5rem !important;
 }
 
 .toast {

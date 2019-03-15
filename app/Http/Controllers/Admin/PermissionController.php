@@ -73,7 +73,8 @@ class PermissionController extends Controller
         if (Auth::user()->can('view-permission')) {
             $permission = Permission::whereName($name)->first();
             if ($permission) {
-                return Response::json($permission);
+                $roles = $permission->roles()->get();
+                return Response::json(compact(['permission', 'roles']));
             }
             return Response::json(['message' => 'Permission not found'], 404);
         }

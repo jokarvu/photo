@@ -2,35 +2,35 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
-                <h1 class="h1-card">Permission</h1>
+                <h1 class="h1-card">User</h1>
             </div>
             <div class="col-lg-6 text-right">
-                <router-link to="/admin/permission/add" class="btn btn-md btn-primary btn-card-h1"><i class="fas fa-plus"></i> New permission</router-link>
+                <router-link to="/admin/user/add" class="btn btn-md btn-primary btn-card-h1"><i class="fas fa-plus"></i> New user</router-link>
             </div>
         </div>
         <div class="card">
             <div class="card-body">
-                <table class="table table-responsive-lg table-responsive-xl mt-6 mb-4" id="list-permission">
+                <table class="table table-responsive-lg mt-6 mb-4" id="list-user">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Email</th>
                             <th>Created</th>
                             <th>Last Updated</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="item in permissions" :key="item.id" :id="'list-permission-item-' + item.id">
+                        <tr v-for="item in users" :key="item.id" :id="'list-user-item-' + item.id">
                             <td>{{ item.id }}</td>
                             <td>{{ item.name }}</td>
-                            <td>{{ item.description }}</td>
+                            <td>{{ item.email }}</td>
                             <td>{{ item.created_at }}</td>
                             <td>{{ item.updated_at }}</td>
                             <td class="text-center">
-                                <router-link :to="{name: 'ViewPermission', params: {name: item.name}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
-                                <router-link :to="{name: 'EditPermission', params: {name: item.name}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
+                                <router-link :to="{name: 'ViewUser', params: {name: item.name}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
+                                <router-link :to="{name: 'EditUser', params: {name: item.name}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#delete-item-' + item.id">
                                     <i class="fas fa-trash"></i>
@@ -47,11 +47,11 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        Deleting this permission might make you unable to take some actions. Do you still want to take action?
+                                        Deleting this user might make you unable to take some actions. Do you still want to take action?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" @click="deletePermission(item.id)" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                                        <button type="button" @click="deleteUser(item.id)" class="btn btn-danger" data-dismiss="modal">Delete</button>
                                     </div>
                                     </div>
                                 </div>
@@ -68,25 +68,25 @@
 export default {
     data () {
         return  {
-            permissions: []
+            users: []
         }
     },
     created () {
-        axios.get('/api/admin/permission').then(res => {
-            this.permissions = res.data;
+        axios.get('/api/admin/user').then(res => {
+            this.users = res.data;
         }).catch(errors => {
             toastr.error(errors.response.data.message);
             this.$router.go(-1);
         });
     },
     updated () {
-        this.table = $('#list-permission').DataTable();
+        this.table = $('#list-user').DataTable();
     },
     methods: {
         deletePermission (id) {
-            axios.delete('/api/admin/permission/' + id).then(res => {
+            axios.delete('/api/admin/user/' + id).then(res => {
                 toastr.success(res.data.message);
-                this.table.rows('#list-permission-item-'+id).remove().draw(false);
+                this.table.rows('#list-user-item-'+id).remove().draw(false);
             }).catch(error => {
                 toastr.error(error.response.data.message);
             })
