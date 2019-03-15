@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use App\Permission;
@@ -18,7 +19,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->can('view-role')) {
+        if (Auth::user()->can('list-role')) {
             $roles = Role::all();
             return Response::json($roles);
         }

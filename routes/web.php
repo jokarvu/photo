@@ -16,8 +16,13 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'api'], function () {
-    Route::resource('permission', 'PermissionController');
+    Route::group(['prefix' => 'admin'], function () {
+        Route::resource('permission', 'Admin\PermissionController');
+    });
 });
+
+
+// Vue application router 
 
 Route::get('/{admin?}', function () {
     return view('dashboard');

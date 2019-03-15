@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Permission;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\PermissionStoreRequest;
@@ -19,7 +20,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        if (true) {
+        if (Auth::user()->can('list-permission')) {
             $permissions = Permission::all();
             return Response::json($permissions);
         }
@@ -33,7 +34,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        if (true) {
+        if (Auth::user()->can('add-permission')) {
             $roles = Role::all();
             return Response::json($roles);
         }
@@ -48,7 +49,7 @@ class PermissionController extends Controller
      */
     public function store(PermissionStoreRequest $request)
     {
-        if (true) {
+        if (Auth::user()->can('add-permission')) {
             $permission = new Permission();
             $permission->name = $request->input('name');
             $permission->description = $request->input('description');
@@ -69,7 +70,7 @@ class PermissionController extends Controller
      */
     public function show($name)
     {
-        if (true) {
+        if (Auth::user()->can('view-permission')) {
             $permission = Permission::whereName($name)->first();
             if ($permission) {
                 return Response::json($permission);
@@ -87,7 +88,7 @@ class PermissionController extends Controller
      */
     public function edit($name)
     {
-        if (true) {
+        if (Auth::user()->can('edit-permission')) {
             $permission = Permission::whereName($name)->first();
             if ($permission) {
                 $roles = Role::all();
@@ -108,7 +109,7 @@ class PermissionController extends Controller
      */
     public function update(PermissionUpdateRequest $request, $id)
     {
-        if (true) {
+        if (Auth::user()->can('edit-permission')) {
             $permission = Permission::find($id);
             if ($permission) {
                 $permission->name = $request->input('name');
