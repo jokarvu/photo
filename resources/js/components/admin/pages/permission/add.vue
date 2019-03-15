@@ -13,6 +13,7 @@
                         <textarea class="form-control form-control-alternative" id="des" rows="3" v-model="permission.description"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" @click="$router.go(-1)" class="btn btn-danger">Cancel</button>
                 </form>
             </div>
         </div>
@@ -30,11 +31,14 @@ export default {
     },
     methods: {
         addPermission () {
-            axios.post('/api/permission', this.permission).then(res => {
+            axios.post('/api/admin/permission', this.permission).then(res => {
                 console.log('ok');
             }).catch(errors => {
                 console.log(errors);
             })
+        },
+        goback () {
+            this.$router.go(-1);
         }
     }
 }

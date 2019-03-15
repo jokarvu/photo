@@ -70,8 +70,21 @@ article {
 .h1-card {
     border-left: 2px solid $primary;
     padding-left: 1em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     margin-top: 2rem;
+}
+
+.btn-card-h1 {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+#toast-container {
+  margin-top: 4.5rem;
+}
+
+.toast {
+  opacity: 1 !important;
 }
 
 // Datatable
@@ -100,6 +113,8 @@ table.dataTable.no-footer {
   .dataTables_wrapper {
     overflow: hidden;
     padding-bottom: 5px;
+    font-family: Open Sans, sans-serif;
+    font-size: 0.9rem;
   }
   
   .dataTables_wrapper .dataTables_length {

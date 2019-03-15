@@ -13,6 +13,7 @@
                         <textarea class="form-control form-control-alternative" id="des" rows="3" v-model="permission.description"></textarea>
                     </div>
                     <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" @click="$router.go(-1)" class="btn btn-danger">Cancel</button>
                 </form>
             </div>
         </div>
@@ -31,7 +32,7 @@ export default {
     },
     created () {
         var name = this.$route.params.name;
-        axios.get('/api/permission/' + name + '/edit').then(res => {
+        axios.get('/api/admin/permission/' + name + '/edit').then(res => {
             this.permission = res.data.permission;
         })
     },
@@ -39,8 +40,9 @@ export default {
         editPermission () {
             var id = this.permission.id;
             console.log(this.permission.name);
-            axios.patch('/api/permission/' + id, this.permission).then(res => {
+            axios.patch('/api/admin/permission/' + id, this.permission).then(res => {
                 console.log('ok');
+                toastr.success(res.data.message);
             }).catch(errors => {
                 console.log(errors);
             })

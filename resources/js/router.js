@@ -4,6 +4,7 @@ import App from './components/admin/app'
 import Dashboard from './components/admin/pages/dashboard'
 
 // Permission
+import ListPermission from './components/admin/pages/permission/list'
 import AddPermission from './components/admin/pages/permission/add'
 import EditPermission from './components/admin/pages/permission/edit'
 
@@ -13,6 +14,7 @@ const routes = [
         component: App,
         children: [
             {path: '/', component: Dashboard},
+            {path: 'permission', component: ListPermission},
             {path: 'permission/add', component: AddPermission},
             {path: 'permission/:name/edit', component: EditPermission, name: 'EditPermission'}
         ]
