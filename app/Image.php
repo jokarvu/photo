@@ -20,4 +20,9 @@ class Image extends Model
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

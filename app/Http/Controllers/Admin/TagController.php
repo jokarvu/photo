@@ -8,6 +8,7 @@ use App\Tag;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\TagStoreRequest;
 use App\Http\Requests\TagUpdateRequest;
+use Auth;
 
 class TagController extends Controller
 {
@@ -65,10 +66,11 @@ class TagController extends Controller
         if (Auth::user()->can('view-tag')) {
             $tag = Tag::whereName($name)->first();
             if ($tag) {
-                $users = $tag->users()->get();
-                $albums = $tag->albums()->get();
+                // TODO: load infomartion abour image (owner.name, album.name, location.name)
+                $users = $tag->users()->with('role')->get();
+                $albums = $tag->albums()->with('owner')->get();
                 $locations = $tag->locations()->get();
-                $images = $tag->images()->get();
+                $images = $tag->images()->with(['owner', 'location', 'album'])->get();
                 return Response::json(compact(['tag', 'users', 'albums', 'locations', 'images']));
             }
             return Response::json(['message' => 'Tag not found'], 404);

@@ -49,49 +49,49 @@
                     </li>
 
                     <li class="nav-item">
-                        <router-link tag="a" to="/articles/new" class="nav-link">
+                        <router-link tag="a" to="/admin/order" class="nav-link">
                             <i class="fas fa-receipt"></i> 
                             <span class="label-hidden">Order</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
-                        <router-link tag="a" to="/articles/new" class="nav-link">
+                        <router-link tag="a" to="/admin/location" class="nav-link">
                             <i class="fas fa-map-marked-alt"></i> 
                             <span class="label-hidden">Location</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
-                        <router-link tag="a" to="/articles/new" class="nav-link">
+                        <router-link tag="a" to="/admin/tag" class="nav-link">
                             <i class="fas fa-tags"></i> 
                             <span class="label-hidden">Tags</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
-                        <router-link tag="a" to="/articles/new" class="nav-link">
+                        <router-link tag="a" to="/admin/gallery" class="nav-link">
                             <i class="fas fa-images"></i> 
                             <span class="label-hidden">Gallery</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
-                        <router-link tag="a" to="/articles/new" class="nav-link">
+                        <router-link tag="a" to="/admin/review" class="nav-link">
                             <i class="fas fa-smile"></i> 
                             <span class="label-hidden">Reviews</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
-                        <router-link tag="a" to="/articles/new" class="nav-link">
+                        <router-link tag="a" to="/admin/rating" class="nav-link">
                             <i class="fas fa-star"></i> 
                             <span class="label-hidden">Ratings</span>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
-                        <router-link tag="a" to="/articles/new" class="nav-link">
+                        <router-link tag="a" to="/admin/income" class="nav-link">
                             <i class="fas fa-money-bill-wave-alt"></i> 
                             <span class="label-hidden">Income</span>
                         </router-link>
@@ -145,9 +145,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    #sidenav-main {
-        overflow-x: hidden;
-    }
     @media screen and (min-width: 769px) {
         .header {
             position: absolute;
@@ -191,6 +188,9 @@ export default {
             display: block;
         }
         .header {
+            display: none;
+        }
+        .fix-toggle-button {
             display: none;
         }
     }

@@ -25,4 +25,10 @@ class Tag extends Model
     {
         return $this->morphedByMany(User::class, 'taggable');
     }
+
+    // Mutators
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtolower($value);
+    }
 }

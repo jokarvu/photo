@@ -76,9 +76,10 @@ class UserController extends Controller
         if (Auth::user()->can('view-user')) {
             $user = User::find($id);
             if ($user) {
-                $user->load('role');
+                $role = $user->role()->get();
                 $permissions = $user->role->permissions()->get();
-                return Response::json(compact(['user', 'permissions']));
+                $albums = $user->albums()->get();
+                return Response::json(compact(['user', 'permissions', 'albums', 'role']));
             }
             return Response::json(['message' => 'User not found'], 404);
         }

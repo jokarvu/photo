@@ -22,6 +22,7 @@ Route::group(['prefix' => 'api'], function () {
         Route::resource('permission', 'Admin\PermissionController');
         Route::resource('user', 'Admin\UserController');
         Route::resource('role', 'Admin\RoleController');
+        Route::resource('tag', 'Admin\TagController');
     });
 });
 

@@ -25,7 +25,7 @@ class TagUpdateRequest extends FormRequest
     {
         $id = $this->route()->parameter('tag');
         return [
-            'name' => 'required|regex:^[\w]+$|unique:tags,name,'.$id,
+            'name' => 'required|regex:/^[\w]+$/|unique:tags,name,'.$id,
         ];
     }
 }

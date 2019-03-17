@@ -21,6 +21,13 @@ import EditRole from './components/admin/pages/role/edit'
 import AddRole from './components/admin/pages/role/add'
 import ViewRole from './components/admin/pages/role/view'
 
+// Tag
+import ListTag from './components/admin/pages/tag/list'
+import AddTag from './components/admin/pages/tag/add'
+import EditTag from './components/admin/pages/tag/edit'
+import ViewTag from './components/admin/pages/tag/view'
+
+
 const routes = [
     {
         path: '/admin',
@@ -42,6 +49,11 @@ const routes = [
             {path: 'role/add', component: AddRole},
             {path: 'role/:name', component: ViewRole, name: 'ViewRole'},
             {path: 'role/:name/edit', component: EditRole, name: 'EditRole'},
+
+            {path: 'tag', component: ListTag},
+            {path: 'tag/add', component: AddTag},
+            {path: 'tag/:name', component: ViewTag, name: 'ViewTag'},
+            {path: 'tag/:name/edit', component: EditTag, name: 'EditTag'},
         ]
     }
 ]

@@ -1,10 +1,10 @@
 <template>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6">
                 <h1 class="h1-card">Permission</h1>
             </div>
-            <div class="col-lg-6 text-right">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 text-right">
                 <router-link to="/admin/permission/add" class="btn btn-md btn-primary btn-card-h1"><i class="fas fa-plus"></i> New permission</router-link>
             </div>
         </div>

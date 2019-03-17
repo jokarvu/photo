@@ -15,4 +15,9 @@ class Location extends Model
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
+
+    public function father()
+    {
+        return $this->belongsTo(Location::class)->withDefault(['name: None']);
+    }
 }

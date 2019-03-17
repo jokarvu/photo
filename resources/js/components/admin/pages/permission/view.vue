@@ -1,10 +1,10 @@
 <template>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 col-xs-6">
                 <h1 class="h1-card">Permission Detail</h1>
             </div>
-            <div class="col-lg-6 text-right">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 col-xs-6 text-right">
                 <button @click="$router.go(-1)" class="btn btn-md btn-primary btn-card-h1"><i class="fas fa-arrow-left"></i> Go back</button>
             </div>
         </div>
@@ -12,17 +12,17 @@
             <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link mb-sm-3 mb-md-0 active" id="view-permission-info-tab" data-toggle="tab" href="#view-permission-info" role="tab" aria-controls="view-permission-info" aria-selected="true">
-                        <i class="ni ni-cloud-upload-96 mr-2"></i> Detail
+                        <i class="fas fa-info-circle mr-2"></i> Detail
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mb-sm-3 mb-md-0" id="view-permission-users-tab" data-toggle="tab" href="#view-permission-users" role="tab" aria-controls="view-permission-users" aria-selected="false">
-                        <i class="ni ni-bell-55 mr-2"></i> Users
+                        <i class="fas fa-user mr-2"></i> Users
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mb-sm-3 mb-md-0" id="view-permission-roles-tab" data-toggle="tab" href="#view-permission-roles" role="tab" aria-controls="view-permission-roles" aria-selected="false">
-                        <i class="ni ni-calendar-grid-58 mr-2"></i> Roles
+                        <i class="fas fa-users mr-2"></i> Roles
                     </a>
                 </li>
             </ul>
