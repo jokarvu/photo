@@ -23,8 +23,17 @@ try {
 
 window.axios = require('axios');
 window.toastr = require('toastr')
+window.Helper = require('./helper')
 toastr.options = {
-    "positionClass": "toast-top-center",
+    "positionClass": "toast-top-left",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut",
+    "newestOnTop": true,
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "preventDuplicates": true,
 }
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

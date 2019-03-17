@@ -55,6 +55,10 @@ class PermissionController extends Controller
             $permission->description = $request->input('description');
             if ($permission->save()) {
                 // TODO: attach roles to permission if neccessary
+                if ($request->has('permission_roles')) {
+                    $permission_roles = $request->input('permission_roles');
+                    $permission->roles()->attach($permission_roles);
+                }
                 return Response::json(['message' => 'Permission has been added!']);
             }
             return Repsonse::json(['message' => 'Something went wrong'], 422);
@@ -93,7 +97,7 @@ class PermissionController extends Controller
             $permission = Permission::whereName($name)->first();
             if ($permission) {
                 $roles = Role::all();
-                $permission_roles = $permission->roles(); 
+                $permission_roles = $permission->roles()->select('roles.id')->get(); 
                 return Response::json(compact(['roles', 'permission_roles', 'permission']));
             }
             return Response::json(['message' => 'Permission not found'], 404);
@@ -116,6 +120,11 @@ class PermissionController extends Controller
                 $permission->name = $request->input('name');
                 $permission->description = $request->input('description');
                 if ($permission->save()) {
+                    // Update roles of permission
+                    if ($request->has('permission_roles')) {
+                        $permission_roles = $request->input('permission_roles');
+                        $permission->roles()->sync($permission_roles);
+                    }
                     return Response::json(['message' => 'Permission has been updated']);
                 }
                 return Response::json(['message' => 'Something went wrong'], 422);

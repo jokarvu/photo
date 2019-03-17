@@ -12,12 +12,8 @@ import router from './router'
 window.Vue = require('vue');
 Vue.use(VueRouter)
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-library.add(faCoffee)
-
+import Helper from './helper'
+window.Helper = Helper
 
 /**
  * The following block of code may be used to automatically register your

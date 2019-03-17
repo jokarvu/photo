@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Response;
 use Auth;
 use App\User;
 use App\Http\Requests\UserStoreRequest;
+use App\Role;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -92,8 +94,9 @@ class UserController extends Controller
         if (Auth::user()->can('edit-user')) {
             $user = User::find($id);
             if ($user) {
+                $roles = Role::all();
                 $user->load('profile');
-                return Response::json($user);
+                return Response::json(compact(['roles', 'user']));
             }
             return Response::json(['message' => 'User not found'], 404);
         }
@@ -107,17 +110,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         if (Auth::user()->can('edit-user')) {
             $user = User::find($id);
             if ($user) {
-                $user->name = $request->name;
-                $user->email = $request->email;
-                $user->password = $request->password;
-                $user->role_id = $request->role_id;
-                $user->status = $request->status;
-                if ($user->save()) {
+                $data = $request->only(['name', 'email', 'password', 'role_id', 'status']);
+                if ($user->update($data)) {
                     return Response::json(['message' => 'User has been updated']);
                 }
                 return Response::json(['message' => 'Something went wrong'], 422);

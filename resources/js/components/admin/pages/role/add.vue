@@ -1,23 +1,23 @@
 <template>
     <div class="container-fluid">
-        <h1 class="h1-card">Add new permission</h1>
+        <h1 class="h1-card">Add new role</h1>
         <div class="card">
             <div class="card-body">
-                <form @submit.prevent="addPermission">
+                <form @submit.prevent="addRole">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control form-control-alternative" id="name" v-model="permission.name">
+                        <input type="text" class="form-control form-control-alternative" id="name" v-model="role.name">
                     </div>
                     <div class="form-group">
                         <label for="des">Description (Optional)</label>
-                        <textarea class="form-control form-control-alternative" id="des" rows="3" v-model="permission.description"></textarea>
+                        <textarea class="form-control form-control-alternative" id="des" rows="3" v-model="role.description"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Role</label>
-                        <div class="row text-center">
-                            <div class="col-lg-4" v-for="item in roles" :key="item.id">
+                        <label>Permission</label>
+                        <div class="row pl-7 pr-7">
+                            <div class="col-lg-4" v-for="item in permissions" :key="item.id">
                                 <div class="custom-control custom-checkbox mb-3">
-                                    <input class="custom-control-input" :id="'role-item-'+item.id" type="checkbox" :value="item.id" v-model="permission.permission_roles">
+                                    <input class="custom-control-input" :id="'role-item-'+item.id" type="checkbox" :value="item.id" v-model="role.role_permissions">
                                     <label class="custom-control-label" :for="'role-item-'+item.id">{{ item.name }}</label>
                                 </div>
                             </div>
@@ -35,24 +35,29 @@
 export default {
     data () {
         return  {
-            permission: {
+            role: {
+                id: null,
                 name: '',
                 description: '',
-                permission_roles: []
+                role_permissions: [],
             },
-            roles: []
+            permissions: [],
         }
     },
     created () {
-        axios.get('/api/admin/permission/create').then(res => {
-            this.roles = res.data;
+        var name = this.$route.params.name;
+        axios.get('/api/admin/role/create').then(res => {
+            this.permissions = res.data;
+        }).catch(error => {
+            toastr.error(error.response.data.message);
+            this.$router.go(-1);
         })
     },
     methods: {
-        addPermission () {
-            axios.post('/api/admin/permission', this.permission).then(res => {
+        addRole () {
+            axios.post('/api/admin/role', this.role).then(res => {
                 toastr.success(res.data.message);
-                this.$router.push({path: '/admin/permission'});
+                this.$router.push({path: '/admin/role'})
             }).catch(error => {
                 Helper.error(error);
             })

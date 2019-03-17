@@ -29,8 +29,8 @@
                             <td>{{ item.created_at }}</td>
                             <td>{{ item.updated_at }}</td>
                             <td class="text-center">
-                                <router-link :to="{name: 'ViewUser', params: {name: item.name}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
-                                <router-link :to="{name: 'EditUser', params: {name: item.name}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
+                                <router-link :to="{name: 'ViewUser', params: {user: item.id}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
+                                <router-link :to="{name: 'EditUser', params: {user: item.id}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#delete-item-' + item.id">
                                     <i class="fas fa-trash"></i>
@@ -38,23 +38,23 @@
 
                                 <!-- Modal -->
                                 <div class="modal fade" :id="'delete-item-' + item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Deleting this user might make you unable to take some actions. Do you still want to take action?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" @click="deleteUser(item.id)" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                                        </div>
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                        Deleting this user might make you unable to take some actions. Do you still want to take action?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" @click="deleteUser(item.id)" class="btn btn-danger" data-dismiss="modal">Delete</button>
-                                    </div>
-                                    </div>
-                                </div>
                                 </div>
                             </td>
                         </tr>
@@ -83,7 +83,7 @@ export default {
         this.table = $('#list-user').DataTable();
     },
     methods: {
-        deletePermission (id) {
+        deleteUser (id) {
             axios.delete('/api/admin/user/' + id).then(res => {
                 toastr.success(res.data.message);
                 this.table.rows('#list-user-item-'+id).remove().draw(false);

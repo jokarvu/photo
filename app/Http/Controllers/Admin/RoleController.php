@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Response;
 use App\Permission;
 use App\Role;
 use App\Http\Requests\RoleStoreRequest;
+use App\Http\Requests\RoleUpdateRequest;
 
 class RoleController extends Controller
 {
@@ -53,7 +54,10 @@ class RoleController extends Controller
             $role->name = $request->input('name');
             $role->description = $request->input('description');
             if ($role->save()) {
-                // TODO: attach permission to role if neccessary + form request update
+                if ($request->has('role_permissions')) {
+                    $role_permissions = $request->input('role_permissions');
+                    $role->permissions()->attach($role_permissions);
+                }
                 return Response::json(['message' => 'Role has been added']);
             }
         }
@@ -70,9 +74,9 @@ class RoleController extends Controller
         if (Auth::user()->can('view-role')) {
             $role = Role::whereName($name)->first();
             if ($role) {
-                $permission = $role->permissions();
-                $users = $role->users();
-                return Response::json(compact(['permission', 'users', 'role']));
+                $permissions = $role->permissions()->get();
+                $users = $role->users()->get();
+                return Response::json(compact(['permissions', 'users', 'role']));
             }
             return Response::json(['message' => 'Role not found'], 404);
         }
@@ -91,8 +95,8 @@ class RoleController extends Controller
             $role = Role::whereName($name)->first();
             if ($role) {
                 $permissions = Permission::all();
-                $role_permission = $role->permissions();
-                return Response::json(compact(['permissions', 'role_permission', 'role']));
+                $role_permissions = $role->permissions()->get();
+                return Response::json(compact(['permissions', 'role_permissions', 'role']));
             }
             return Response::json(['message' => 'Role not found'], 404);
         }
@@ -106,7 +110,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RoleUpdateRequest $request, $id)
     {
         if (Auth::user()->can('edit-role')) {
             $role = Role::find($id);
@@ -114,6 +118,10 @@ class RoleController extends Controller
                 $role->name = $request->input('name');
                 $role->description = $request->input('description');
                 if ($role->save()) {
+                    if ($request->has('role_permissions')) {
+                        $role_permissions = $request->input('role_permissions');
+                        $role->permissions()->sync($role_permissions);
+                    }
                     return Response::json(['message' => 'Role has been updated']);
                 }
                 return Response::json(['message' => 'Something went wrong'], 422);
@@ -131,6 +139,16 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Auth::user()->can('remove-role')) {
+            $role = Role::find($id);
+            if ($role) {
+                if ($role->delete()) {
+                    return Response::json(['message' => 'Group has been remove']);
+                }
+                return Response::json(['message' => 'Something went wrong'], 422);
+            }
+            return Response::json(['message' => 'Group not found'], 404);
+        }
+        return Response::json(['message' => 'Permission denied'], 401);
     }
 }
