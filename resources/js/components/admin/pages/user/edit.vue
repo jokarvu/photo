@@ -45,7 +45,7 @@ export default {
         }
     },
     created () {
-        var user_id = this.$route.params.user;
+        var user_id = this.$route.params.id;
         axios.get('/api/admin/user/' + user_id + '/edit').then(res => {
             this.user = res.data.user;
             this.roles = res.data.roles;

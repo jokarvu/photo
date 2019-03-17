@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mb-sm-3 mb-md-0" id="view-role-roles-tab" data-toggle="tab" href="#view-role-roles" role="tab" aria-controls="view-role-roles" aria-selected="false">
+                    <a class="nav-link mb-sm-3 mb-md-0" id="view-role-permissions-tab" data-toggle="tab" href="#view-role-permissions" role="tab" aria-controls="view-role-permissions" aria-selected="false">
                         <i class="ni ni-calendar-grid-58 mr-2"></i> Permissions
                     </a>
                 </li>
@@ -83,16 +83,16 @@
                                     <td>{{ item.email }}</td>
                                     <td>{{ item.created_at }}</td>
                                     <td>{{ item.updated_at }}</td>
-                                    <td>
-                                        <router-link :to="{name: 'ViewUser', params: {user: item.id}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
-                                        <router-link :to="{name: 'EditUser', params: {user: item.id}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
+                                    <td class="text-center">
+                                        <router-link :to="{name: 'ViewUser', params: {id: item.id}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
+                                        <router-link :to="{name: 'EditUser', params: {id: item.id}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#delete-item-' + item.id">
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#view-role-users-delete-item-' + item.id">
                                             <i class="fas fa-trash"></i>
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" :id="'delete-item-' + item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" :id="'view-role-users-delete-item-' + item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                 <div class="modal-header">
@@ -116,7 +116,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="tab-pane fade" id="view-role-roles" role="tabpanel" aria-labelledby="view-role-permissions-tab">
+                    <div class="tab-pane fade" id="view-role-permissions" role="tabpanel" aria-labelledby="view-role-permissions-tab">
                         <table class="table table-responsive-lg table-responsive-xl mt-6 mb-4" id="view-role-permissions-table">
                             <thead>
                                 <tr>
@@ -135,16 +135,16 @@
                                     <td>{{ item.description }}</td>
                                     <td>{{ item.created_at }}</td>
                                     <td>{{ item.updated_at }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         <router-link :to="{name: 'ViewPermission', params: {name: item.name}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
                                         <router-link :to="{name: 'EditPermission', params: {name: item.name}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#delete-item-' + item.id">
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#view-role-permissions-delete-item-' + item.id">
                                             <i class="fas fa-trash"></i>
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" :id="'delete-item-' + item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" :id="'view-role-permissions-delete-item-' + item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

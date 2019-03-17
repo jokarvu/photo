@@ -22,6 +22,7 @@ class UserController extends Controller
     {
         if (Auth::user()->can('list-user')) {
             $users = User::all();
+            $users->load('role');
             return Response::json($users);
         }
         return Response::json(['message' => 'Permission denied'], 401);
@@ -70,13 +71,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($id)
     {
         if (Auth::user()->can('view-user')) {
-            $user = User::whereName($name)->first();
+            $user = User::find($id);
             if ($user) {
-                $user->load('profile');
-                return Response::json($user);
+                $user->load('role');
+                $permissions = $user->role->permissions()->get();
+                return Response::json(compact(['user', 'permissions']));
             }
             return Response::json(['message' => 'User not found'], 404);
         }

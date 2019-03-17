@@ -16,6 +16,7 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Type</th>
                             <th>Created</th>
                             <th>Last Updated</th>
                             <th>Action</th>
@@ -26,18 +27,19 @@
                             <td>{{ item.id }}</td>
                             <td>{{ item.name }}</td>
                             <td>{{ item.email }}</td>
+                            <td>{{ item.role.name }}</td>
                             <td>{{ item.created_at }}</td>
                             <td>{{ item.updated_at }}</td>
                             <td class="text-center">
-                                <router-link :to="{name: 'ViewUser', params: {user: item.id}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
-                                <router-link :to="{name: 'EditUser', params: {user: item.id}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
+                                <router-link :to="{name: 'ViewUser', params: {id: item.id}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
+                                <router-link :to="{name: 'EditUser', params: {id: item.id}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#delete-item-' + item.id">
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#list-user-delete-item-' + item.id">
                                     <i class="fas fa-trash"></i>
                                 </button>
 
                                 <!-- Modal -->
-                                <div class="modal fade" :id="'delete-item-' + item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" :id="'list-user-delete-item-' + item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                         <div class="modal-header">

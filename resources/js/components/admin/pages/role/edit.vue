@@ -4,15 +4,15 @@
         <div class="card">
             <div class="card-body">
                 <form @submit.prevent="editRole">
-                    <div class="form-role">
+                    <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control form-control-alternative" id="name" v-model="role.name">
                     </div>
-                    <div class="form-role">
+                    <div class="form-group">
                         <label for="des">Description (Optional)</label>
                         <textarea class="form-control form-control-alternative" id="des" rows="3" v-model="role.description"></textarea>
                     </div>
-                    <div class="form-role">
+                    <div class="form-group">
                         <label>Permission</label>
                         <div class="row pl-7 pr-7">
                             <div class="col-lg-4" v-for="item in permissions" :key="item.id">

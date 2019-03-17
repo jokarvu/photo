@@ -84,9 +84,33 @@
                                     <td>{{ item.created_at }}</td>
                                     <td>{{ item.updated_at }}</td>
                                     <td class="text-center">
-                                        <button class="btn btn-success btn-sm"><i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-primary btn-sm"><i class="fas fa-pen"></i></button>
-                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                        <router-link :to="{name: 'ViewUser', params: {id: item.id}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
+                                        <router-link :to="{name: 'EditUser', params: {id: item.id}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#view-permission-users-delete-item-' + item.id">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" :id="'view-permission-users-delete-item-' + item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Deleting this user might make you unable to take some actions. Do you still want to take action?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" @click="deleteUser(item.id)" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -105,16 +129,40 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="item in roles" :key="item.id" :id="'view-permission-roles-'+item.id">
+                                <tr v-for="item in roles" :key="item.id" :id="'view-permission-roles-item-'+item.id">
                                     <td>{{ item.id }}</td>
                                     <td>{{ item.name }}</td>
                                     <td>{{ item.description }}</td>
                                     <td>{{ item.created_at }}</td>
                                     <td>{{ item.updated_at }}</td>
                                     <td class="text-center">
-                                        <button class="btn btn-success btn-sm"><i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-primary btn-sm"><i class="fas fa-pen"></i></button>
-                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                        <router-link :to="{name: 'ViewRole', params: {name: item.name}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
+                                        <router-link :to="{name: 'EditRole', params: {name: item.name}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#view-permission-roles-delete-item-' + item.id">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" :id="'view-permission-roles-delete-item-' + item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Deleting this role might make you unable to take some actions. Do you still want to take action?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" @click="deleteRole(item.id)" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -146,8 +194,18 @@ export default {
         })
     },
     updated () {
-        $('#view-permission-users-table').DataTable();
-        $('#view-permission-roles-table').DataTable();
+        this.users_table = $('#view-permission-users-table').DataTable();
+        this.roles_table = $('#view-permission-roles-table').DataTable();
+    },
+    methods: {
+        deleteRole (id) {
+            axios.delete('/api/admin/role/' + id).then(res => {
+                toastr.success(res.data.message);
+                this.roles_table.rows('#view-permission-roles-item'+id).remove().draw(false);
+            }).catch(error => {
+                toastr.error(error.response.data.message);
+            })
+        }
     }
 }
 </script>

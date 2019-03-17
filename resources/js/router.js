@@ -13,6 +13,7 @@ import ViewPermission from './components/admin/pages/permission/view'
 import ListUser from './components/admin/pages/user/list'
 import EditUser from './components/admin/pages/user/edit'
 import AddUser from './components/admin/pages/user/add'
+import ViewUser from './components/admin/pages/user/view'
 
 // Group
 import ListRole from './components/admin/pages/role/list'
@@ -34,7 +35,8 @@ const routes = [
 
             {path: 'user', component: ListUser},
             {path: 'user/add', component: AddUser},
-            {path: 'user/:user/edit', component: EditUser, name: 'EditUser'},
+            {path: 'user/:id', component: ViewUser, name: 'ViewUser'},
+            {path: 'user/:id/edit', component: EditUser, name: 'EditUser'},
 
             {path: 'role', component: ListRole},
             {path: 'role/add', component: AddRole},

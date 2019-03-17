@@ -32,12 +32,12 @@
                                 <router-link :to="{name: 'ViewRole', params: {name: item.name}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
                                 <router-link :to="{name: 'EditRole', params: {name: item.name}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#delete-item-' + item.id">
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#list-role-delete-item-' + item.id">
                                     <i class="fas fa-trash"></i>
                                 </button>
 
                                 <!-- Modal -->
-                                <div class="modal fade" :id="'delete-item-' + item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" :id="'list-role-delete-item-' + item.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
