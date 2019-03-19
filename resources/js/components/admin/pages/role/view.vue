@@ -32,34 +32,34 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="view-role-info" role="tabpanel" aria-labelledby="view-role-info-tab">
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 col-xs-3">
                                 <h3>Name</h3>
                             </div>
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 col-xs-9">
                                 {{role.name}}
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 col-xs-3">
                                 <h3>Description</h3>
                             </div>
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 col-xs-9">
                                 {{role.description}}
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 col-xs-3">
                                 <h3>Created</h3>
                             </div>
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 col-xs-9">
                                 {{role.created_at}}
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 col-xs-3">
                                 <h3>Last updated</h3>
                             </div>
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9 col-xs-9">
                                 {{role.updated_at}}
                             </div>
                         </div>

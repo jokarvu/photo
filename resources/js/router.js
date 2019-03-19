@@ -1,5 +1,6 @@
 import VueRouter from 'vue-router'
 
+import Login from './components/login'
 import App from './components/admin/app'
 import Dashboard from './components/admin/pages/dashboard'
 
@@ -29,6 +30,10 @@ import ViewTag from './components/admin/pages/tag/view'
 
 
 const routes = [
+    {
+        path: '/login',
+        component: Login
+    },
     {
         path: '/admin',
         component: App,
