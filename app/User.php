@@ -102,6 +102,13 @@ class User extends Authenticatable
     {
         return !! optional(optional($this->role)->permissions)->contains($permission);
     }
+    
+    // Option check
+    public function hasOption(Option $option)
+    {
+        return !! optional(optional($this->options)->contains($option));
+    }
+
 
     // Mutators
     public function setPasswordAttribute($value)

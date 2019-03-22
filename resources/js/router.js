@@ -28,6 +28,12 @@ import AddTag from './components/admin/pages/tag/add'
 import EditTag from './components/admin/pages/tag/edit'
 import ViewTag from './components/admin/pages/tag/view'
 
+// Location
+import ListLocation from './components/admin/pages/location/list'
+import AddLocation from './components/admin/pages/location/add'
+import EditLocation from './components/admin/pages/location/edit'
+import ViewLocation from './components/admin/pages/location/view'
+
 
 const routes = [
     {
@@ -59,6 +65,11 @@ const routes = [
             {path: 'tag/add', component: AddTag},
             {path: 'tag/:name', component: ViewTag, name: 'ViewTag'},
             {path: 'tag/:name/edit', component: EditTag, name: 'EditTag'},
+
+            {path: 'location', component: ListLocation},
+            {path: 'location/add', component: AddLocation},
+            {path: 'location/:id', component: ViewLocation, name: 'ViewLocation'},
+            {path: 'location/:id/edit', component: EditLocation, name: 'EditLocation'},
         ]
     }
 ]

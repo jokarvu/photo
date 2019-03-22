@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <hr class="my-3">
-                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" @click="$router.go(-1)" class="btn btn-danger">Cancel</button>
                 </form>
             </div>

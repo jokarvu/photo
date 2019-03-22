@@ -17,12 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'api'], function () {
+Route::group(['prefix' => 'api', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::resource('permission', 'Admin\PermissionController');
         Route::resource('user', 'Admin\UserController');
         Route::resource('role', 'Admin\RoleController');
         Route::resource('tag', 'Admin\TagController');
+        Route::resource('location', 'Admin\LocationController');
     });
 });
 
