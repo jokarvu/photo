@@ -25,6 +25,7 @@ Route::group(['prefix' => 'api', 'middleware' => ['auth']], function () {
         Route::resource('tag', 'Admin\TagController');
         Route::resource('location', 'Admin\LocationController');
     });
+    Route::resource('image', 'ImageController');
 });
 
 

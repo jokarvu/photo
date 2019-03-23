@@ -70,7 +70,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <router-link tag="a" to="/admin/gallery" class="nav-link">
+                        <router-link tag="a" to="/admin/image" class="nav-link">
                             <i class="fas fa-images"></i> 
                             <span class="label-hidden">Gallery</span>
                         </router-link>

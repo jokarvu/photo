@@ -19,6 +19,7 @@
                             <option v-for="item in locations" :key="item.id" :value="item.id">{{ item.name }}</option>
                         </select>
                     </div>
+                    <Tag @tag_change="tag_change" :tags="tags"></Tag>
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" @click="$router.go(-1)" class="btn btn-danger">Cancel</button>
                 </form>
@@ -27,20 +28,24 @@
     </div>
 </template>
 <script>
+import Tag from '../components/tag.vue'
 export default {
     data () {
         return {
             locations: [],
+            tags: [],
             location: {
                 name: '',
                 parent_id: 0,
                 description: '',
+                tags: []
             }
         }
     },
     created () {
         axios.get('/api/admin/location/create').then(res => {
-            this.locations = res.data;
+            this.locations = res.data.locations;
+            this.tags = res.data.tags;
         }).catch(error => {
             toastr.error(error.response.data.message);
             this.$router.go(-1);
@@ -54,7 +59,11 @@ export default {
             }).catch(error => {
                 Helper.error(error);
             })
+        },
+        tag_change (e) {
+            this.location.tags = e;
         }
-    }
+    },
+    components: {Tag}
 }
 </script>

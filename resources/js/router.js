@@ -34,6 +34,10 @@ import AddLocation from './components/admin/pages/location/add'
 import EditLocation from './components/admin/pages/location/edit'
 import ViewLocation from './components/admin/pages/location/view'
 
+// Image
+import ListImage from './components/admin/pages/images/list'
+import AddImage from './components/admin/pages/images/add'
+
 
 const routes = [
     {
@@ -70,6 +74,9 @@ const routes = [
             {path: 'location/add', component: AddLocation},
             {path: 'location/:id', component: ViewLocation, name: 'ViewLocation'},
             {path: 'location/:id/edit', component: EditLocation, name: 'EditLocation'},
+
+            {path: 'image', component: ListImage},
+            {path: 'image/add', component: AddImage},
         ]
     }
 ]

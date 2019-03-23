@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
+    protected $fillable = ['path', 'album_id', 'user_id', 'location_id', 'description'];
     public function album()
     {
         return $this->belongsTo(Album::class);

@@ -153,11 +153,12 @@
                                     <td>{{ item.id }}</td>
                                     <td>{{ item.slug }}</td>
                                     <td>{{ item.description }}</td>
+                                    <td>{{ item.description }}</td>
                                     <td>{{ item.created_at }}</td>
                                     <td>{{ item.updated_at }}</td>
                                     <td class="text-center">
-                                        <router-link :to="{name: 'ViewLocation', params: {slug: item.slug}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
-                                        <router-link :to="{name: 'EditLocation', params: {slug: item.slug}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
+                                        <router-link :to="{name: 'ViewLocation', params: {id: item.id}}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></router-link>
+                                        <router-link :to="{name: 'EditLocation', params: {id: item.id}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></router-link>
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" :data-target="'#view-tag-locations-delete-item-' + item.id">
                                             <i class="fas fa-trash"></i>

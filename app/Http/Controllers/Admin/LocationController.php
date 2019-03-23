@@ -8,6 +8,7 @@ use App\Location;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\LocationStoreRequest;
 use Auth;
+use App\Tag;
 
 class LocationController extends Controller
 {
@@ -34,7 +35,8 @@ class LocationController extends Controller
     {
         if (Auth::user()->can('add-location')) {
             $locations = Location::all();
-            return Response::json($locations);
+            $tags = Tag::all();
+            return Response::json(compact(['locations', 'tags']));
         }
         return Response::json(['message' => 'Permission denied'], 401);
     }
@@ -53,6 +55,7 @@ class LocationController extends Controller
             $location->parent_id = $request->input('parent_id');
             $location->description = $request->input('description');
             if ($location->save()) {
+                $location->tags()->attach($request->input('tags'));
                 return Response::json(['message' => 'Location has been added']);
             }
             return Response::json(['message' => 'Something went wrong'], 422);
