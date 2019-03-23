@@ -11,14 +11,16 @@
 |
 */
 
-Auth::loginUsingId(1);
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'api', 'middleware' => ['auth']], function () {
-    Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'api'], function () {
+    Route::post('auth/login', 'AuthController@login');
+    Route::get('auth/logout', 'AuthController@logout')->middleware('authorization');
+    Route::get('auth/dashboard', 'AuthController@dashboard')->middleware('authorization');
+    Route::get('auth/guest', 'AuthController@guest');
+    Route::group(['prefix' => 'admin', 'middleware' => ['authorization']], function () {
         Route::resource('permission', 'Admin\PermissionController');
         Route::resource('user', 'Admin\UserController');
         Route::resource('role', 'Admin\RoleController');
