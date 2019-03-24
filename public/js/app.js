@@ -88548,6 +88548,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_pages_location_view__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/admin/pages/location/view */ "./resources/js/components/admin/pages/location/view.vue");
 /* harmony import */ var _components_admin_pages_images_list__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/admin/pages/images/list */ "./resources/js/components/admin/pages/images/list.vue");
 /* harmony import */ var _components_admin_pages_images_add__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/admin/pages/images/add */ "./resources/js/components/admin/pages/images/add.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_26__);
 
 
 
@@ -88580,12 +88582,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var routes = [{
   path: '/login',
   component: _components_login__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
   path: '/admin',
   component: _components_admin_app__WEBPACK_IMPORTED_MODULE_2__["default"],
+  meta: {
+    auth: true,
+    admin: true
+  },
   children: [{
     path: '/',
     component: _components_admin_pages_dashboard__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -88671,6 +88678,35 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   routes: routes,
   mode: 'history',
   linkActiveClass: 'active'
+});
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(function (page) {
+    return page.meta.auth;
+  })) {
+    return axios.get('/api/auth/guest').then(function (res) {
+      return next({
+        path: '/login'
+      });
+    }).catch(function (error) {
+      return axios.get('/api/auth/dashboard').then(function (res) {
+        if (to.matched.some(function (page) {
+          return page.meta.admin;
+        }) && res.data == "admin") {
+          return next();
+        } else if (to.matched.some(function (page) {
+          return page.meta.photographer;
+        }) && res.data == "photographer") {
+          return next();
+        } else {
+          return next({
+            path: '/'
+          });
+        }
+      });
+    });
+  }
+
+  return next();
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 

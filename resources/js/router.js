@@ -37,6 +37,7 @@ import ViewLocation from './components/admin/pages/location/view'
 // Image
 import ListImage from './components/admin/pages/images/list'
 import AddImage from './components/admin/pages/images/add'
+import Axios from 'axios';
 
 
 const routes = [
@@ -47,6 +48,10 @@ const routes = [
     {
         path: '/admin',
         component: App,
+        meta: {
+            auth: true,
+            admin: true
+        },
         children: [
             {path: '/', component: Dashboard},
 
@@ -85,6 +90,25 @@ const router = new VueRouter({
     routes: routes,
     mode: 'history',
     linkActiveClass: 'active'
+})
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(page => page.meta.auth)) {
+        return axios.get('/api/auth/guest').then(res => {
+            return next({path: '/login'})
+        }).catch(error => {
+            return axios.get('/api/auth/dashboard').then(res => {
+                if (to.matched.some(page => page.meta.admin) && res.data == "admin") {
+                    return next();
+                } else if (to.matched.some(page => page.meta.photographer) && res.data == "photographer") {
+                    return next();
+                } else {
+                    return next({path: '/'})
+                }
+            })
+        })
+    }
+    return next();
 })
 
 export default router
