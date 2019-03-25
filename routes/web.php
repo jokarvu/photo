@@ -29,6 +29,7 @@ Route::group(['prefix' => 'api'], function () {
     });
     Route::resource('image', 'ImageController');
     Route::resource('option', 'OptionController');
+    Route::resource('review', 'ReviewController');
 });
 
 

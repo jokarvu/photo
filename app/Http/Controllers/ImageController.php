@@ -14,6 +14,10 @@ use App\Tag;
 
 class ImageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('authorization', ['only' => ['store', 'update', 'destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,11 +25,7 @@ class ImageController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->can('list-image')) {
-            $images = Image::all()->load(['album', 'location', 'owner']);
-            return Response::json($images);
-        }
-        $images = Auth::user()->images()->load(['album', 'location', 'owner'])->get();
+        $images = Image::all()->load(['album', 'location', 'owner']);
         return Response::json($images);
     }
 

@@ -68,13 +68,13 @@ class User extends Authenticatable
         return $this->hasMany(Image::class);
     }
 
-    public function reviews()
+    public function reviewFrom()
     {
         // This returns his reviews about other photographer
         return $this->hasMany(Review::class, 'user_id');
     }
 
-    public function hisReviews()
+    public function reviewTo()
     {
         // This return people's reviews about him        
         return $this->hasMany(Review::class, 'photographer_id');
@@ -112,6 +112,12 @@ class User extends Authenticatable
     public function hasOption(Option $option)
     {
         return !! optional(optional($this->options)->contains($option));
+    }
+
+    // Review owner check
+    public function hasReview(Review $review)
+    {
+        return !! optional(optional($this->reviewFrom)->contains($review));
     }
 
 

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
+    protected $fillable = ['content', 'photographer_id', 'user_id', 'rate'];
+    
     public function owner()
     {
         return $this->belongsTo(User::class);

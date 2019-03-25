@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Option;
+use App\Review;
 use Illuminate\Support\Facades\Response;
-use Auth;
-use App\Http\Requests\OptionStoreRequest;
-use App\Http\Requests\OptionUpdateRequest;
 
-class OptionController extends Controller
+class ReviewController extends Controller
 {
     public function __construct()
     {
@@ -22,8 +19,9 @@ class OptionController extends Controller
      */
     public function index()
     {
-        $options = Auth::user()->options()->get();
-        return Response::json($options);
+        $reviewFrom = Auth::user()->reviewFrom()->get();
+        $reviewTo = Auth::user()->reviewTo()->get();
+        return Response::json(compact(['reviewFrom', 'reviewTo']));
     }
 
     /**
@@ -42,16 +40,12 @@ class OptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OptionStoreRequest $request)
+    public function store(Request $request)
     {
-        if (Auth::user()->can('add-option')) {
-            $option = new Option();
-            $option->photographer_id = Auth::id();
-            $option->name = $request->input('name');
-            $option->price = $request->input('price');
-            $option->description = $request->input('description');
-            if ($option->save()) {
-                return Response::json(['message' => 'Option has been added']);
+        if (Auth::user()->can('add-review')) {
+            $data = $request->only(['content', 'rate', 'photographer_id']);
+            if (Auth::user()->reviewFrom()->create($data)) {
+                return Response::json(['message' => 'Reviewed']);
             }
             return Response::json(['message' => 'Something went wrong'], 422);
         }
@@ -66,14 +60,11 @@ class OptionController extends Controller
      */
     public function show($id)
     {
-        if (Auth::user()->can('view-options')) {
-            $option = Option::find($id);
-            if ($option) {
-                return Response::json($option);
-            }
-            return Response::json(['message' => 'Option not found'], 404);
+        $review = Review::find($id);
+        if ($review) {
+            return Response::json($review);
         }
-        return Response::json(['message' => 'Permission denied'], 401);
+        return Response::json(['message' => 'Review not found'], 404);
     }
 
     /**
@@ -84,9 +75,12 @@ class OptionController extends Controller
      */
     public function edit($id)
     {
-        $option = Option::find($id);
-        if (Auth::user()->can('edit-option') && Auth::user()->hasOption($option)) {
-            return Response::json($option);
+        $review = Review::find($id);
+        if (Auth::user()->can('edit-review') && Auth::user()->hasReview($review)) {
+            if ($review) {
+                return Response::json($review);
+            }
+            return Response::json(['message' => 'Review not found'], 404);
         }
         return Response::json(['message' => 'Permission denied'], 401);
     }
@@ -98,13 +92,13 @@ class OptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(OptionUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $option = Option::find($id);
-        if (Auth::user()->can('edit-option') && Auth::user()->hasOption($option)) {
-            $data = $request->only(['name', 'description', 'price']);
-            if ($option->update($data)) {
-                return Response::json(['message' => 'Option has been updated']);
+        $review = Review::find($id);
+        if (Auth::user()->can('edit-review') && Auth::user()->hasReview($review)) {
+            $data = $request->only(['content', 'rate']);
+            if ($review->update($data)) {
+                return Response::json(['message' => 'Review has been updated']);
             }
             return Response::json(['message' => 'Something went wrong'], 422);
         }
@@ -119,10 +113,10 @@ class OptionController extends Controller
      */
     public function destroy($id)
     {
-        $option = Option::find($id);
-        if (Auth::user()->can('remove-option') && Auth::user()->hasOption($option)) {
-            if ($option->delete()) {
-                return Response::json(['message' => 'Option has been removed']);
+        $review = Review::find($id);
+        if (Auth::user()->can('remove-review') && Auth::user()->hasReview($review)) {
+            if ($review->delete()) {
+                return Response::json(['message' => 'Review has been removed']);
             }
             return Response::json(['message' => 'Something went wrong'], 422);
         }
