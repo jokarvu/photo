@@ -28,6 +28,7 @@ Route::group(['prefix' => 'api'], function () {
         Route::resource('location', 'Admin\LocationController');
     });
     Route::resource('image', 'ImageController');
+    Route::resource('option', 'OptionController');
 });
 
 

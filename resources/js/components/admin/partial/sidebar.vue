@@ -42,9 +42,9 @@
                     </li>
                     
                     <li class="nav-item">
-                        <router-link tag="a" to="/articles/new" class="nav-link">
+                        <router-link tag="a" to="/admin/option" class="nav-link">
                             <i class="fas fa-camera-retro"></i> 
-                            <span class="label-hidden">Photographer</span>
+                            <span class="label-hidden">Option</span>
                         </router-link>
                     </li>
 

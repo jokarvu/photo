@@ -97,6 +97,11 @@ class User extends Authenticatable
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
+    public function options()
+    {
+        return $this->hasMany(Option::class, 'photographer_id');
+    }
+
     // Permission check
     public function hasPermission(Permission $permission)
     {

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Option;
 use Illuminate\Support\Facades\Response;
+use Auth;
+use App\Http\Requests\OptionStoreRequest;
+use App\Http\Requests\OptionUpdateRequest;
 
 class OptionController extends Controller
 {
@@ -35,16 +38,15 @@ class OptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OptionStoreRequest $request)
     {
         if (Auth::user()->can('add-option')) {
             $option = new Option();
-            $option->photographer_id = $request->input('photographer_id');
+            $option->photographer_id = Auth::id();
             $option->name = $request->input('name');
             $option->price = $request->input('price');
             $option->description = $request->input('description');
             if ($option->save()) {
-                Auth::user()->options()->attach($option->id);
                 return Response::json(['message' => 'Option has been added']);
             }
             return Response::json(['message' => 'Something went wrong'], 422);
@@ -92,7 +94,7 @@ class OptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OptionUpdateRequest $request, $id)
     {
         $option = Option::find($id);
         if (Auth::user()->can('edit-option') && Auth::user()->hasOption($option)) {

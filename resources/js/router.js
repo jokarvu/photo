@@ -37,8 +37,11 @@ import ViewLocation from './components/admin/pages/location/view'
 // Image
 import ListImage from './components/admin/pages/images/list'
 import AddImage from './components/admin/pages/images/add'
-import Axios from 'axios';
 
+// Option
+import ListOption from './components/admin/pages/option/list'
+import AddOption from './components/admin/pages/option/add'
+import EditOption from './components/admin/pages/option/edit'
 
 const routes = [
     {
@@ -82,6 +85,10 @@ const routes = [
 
             {path: 'image', component: ListImage},
             {path: 'image/add', component: AddImage},
+
+            {path: 'option', component: ListOption},
+            {path: 'option/add', component: AddOption},
+            {path: 'option/:id/edit', component: EditOption, name: 'EditOption'},
         ]
     }
 ]

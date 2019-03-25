@@ -21340,3 +21340,7 @@ button.toast-close-button {
   }
 }
 
+a {
+  cursor: pointer;
+}
+

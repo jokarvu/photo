@@ -38,11 +38,11 @@
                             <i class="fas fa-cog"></i>
                             <span class="nav-link-inner--text d-lg-none pl-3">Settings</span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right pl-4" aria-labelledby="navbar-default_dropdown_1">
-                            <a class="dropdown-item" href="#">Profile</a>
-                            <a class="dropdown-item" href="#">Privacy</a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+                            <a class="dropdown-item" href="#"><i class="fas fa-user"></i> Profile</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Privacy</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" @click="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -51,3 +51,17 @@
         </div>
     </nav>
 </template>
+<script>
+export default {
+    methods: {
+        logout () {
+            axios.get('/api/auth/logout').then(res => {
+                toastr.warning(res.data.message);
+                this.$router.push({path: '/login'});
+            }).catch(error => {
+                toastr.error(error.response.data.message);
+            })
+        }
+    }
+}
+</script>
