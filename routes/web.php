@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'api'], function () {
     Route::post('auth/login', 'AuthController@login');
+    Route::get('auth/register', 'AuthController@create');
+    Route::post('auth/register', 'AuthController@register');
     Route::get('auth/logout', 'AuthController@logout')->middleware('authorization');
     Route::get('auth/dashboard', 'AuthController@dashboard')->middleware('authorization');
     Route::get('auth/guest', 'AuthController@guest');

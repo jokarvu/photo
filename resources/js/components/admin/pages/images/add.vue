@@ -78,7 +78,7 @@ export default {
             })
             axios.post('/api/image', formData).then(res => {
                 toastr.success(res.data.message);
-                // this.$router.go(-1);
+                this.$router.go(-1);
             }).catch(error => {
                 toastr.error(error);
                 console.log(error);

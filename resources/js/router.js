@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router'
 
 import Login from './components/login'
+import Register from './components/register'
 import App from './components/admin/app'
 import Dashboard from './components/admin/pages/dashboard'
 
@@ -47,6 +48,10 @@ const routes = [
     {
         path: '/login',
         component: Login
+    },
+    {
+        path: '/register',
+        component: Register
     },
     {
         path: '/admin',

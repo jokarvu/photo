@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\LoginRequest;
 use Auth;
+use App\User;
+use App\Http\Requests\RegisterRequest;
+use App\Role;
 
 class AuthController extends Controller
 {
@@ -40,5 +43,23 @@ class AuthController extends Controller
             return Response::json(['message' => 'true']);
         }
         return Response::json(['message' => 'false'], 403);
+    }
+
+    public function create()
+    {
+        $roles = Role::where('name', '!=', 'admin')->get();
+        return Response::json($roles);
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        if (Auth::guest()) {
+            $data = $request->only(['name', 'email', 'password', 'role_id']);
+            if (User::create($data)) {
+                return Response::json(['message' => 'Registered successfully']);
+            }
+            return Response::json(['message' => 'Something went wrong'], 422);
+        }
+        return Response::json(['message' => 'You have logged in'], 401);
     }
 }

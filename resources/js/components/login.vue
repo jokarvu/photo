@@ -23,7 +23,7 @@
                                     <div class="form-group mb-3">
                                         <div class="input-group input-group-alternative">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                         </div>
                                         <input class="form-control" placeholder="Email" type="email" v-model="user.email">
                                         </div>
@@ -31,7 +31,7 @@
                                     <div class="form-group">
                                         <div class="input-group input-group-alternative">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                         </div>
                                         <input class="form-control" placeholder="Password" type="password" v-model="user.password">
                                         </div>
@@ -50,14 +50,14 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-6">
-                                <a href="#" class="text-light">
+                                <router-link to="/forgot" class="text-light">
                                 <small>Forgot password?</small>
-                                </a>
+                                </router-link>
                             </div>
                             <div class="col-6 text-right">
-                                <a href="#" class="text-light">
+                                <router-link to="/register" class="text-light">
                                 <small>Create new account</small>
-                                </a>
+                                </router-link>
                             </div>
                         </div>
                     </div>
