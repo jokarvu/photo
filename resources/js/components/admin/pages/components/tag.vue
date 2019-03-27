@@ -16,7 +16,8 @@
                 multiple: true,
                 closeOnSelect: false,
                 matcher: this.matchCustom,
-                placeholder: 'Select books..'
+                placeholder: 'Select tags..',
+                theme: 'classic'
             }).on('change', function () {
                 self.$emit('tag_change', $('#tags').val());
             })

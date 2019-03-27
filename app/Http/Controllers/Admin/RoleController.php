@@ -50,10 +50,8 @@ class RoleController extends Controller
     public function store(RoleStoreRequest $request)
     {
         if (Auth::user()->can('add-role')) {
-            $role = new Role();
-            $role->name = $request->input('name');
-            $role->description = $request->input('description');
-            if ($role->save()) {
+            $data = $request->only(['name', 'description', 'dashboard']);
+            if ($role = Role::create($data)) {
                 if ($request->has('role_permissions')) {
                     $role_permissions = $request->input('role_permissions');
                     $role->permissions()->attach($role_permissions);
@@ -115,9 +113,8 @@ class RoleController extends Controller
         if (Auth::user()->can('edit-role')) {
             $role = Role::find($id);
             if ($role) {
-                $role->name = $request->input('name');
-                $role->description = $request->input('description');
-                if ($role->save()) {
+                $data = $request->only(['name', 'dashboard', 'description']);
+                if ($role->update($data)) {
                     if ($request->has('role_permissions')) {
                         $role_permissions = $request->input('role_permissions');
                         $role->permissions()->sync($role_permissions);

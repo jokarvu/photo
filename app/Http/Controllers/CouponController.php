@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Coupon;
 use Illuminate\Support\Facades\Response;
+use Auth;
 
 class CouponController extends Controller
 {
@@ -15,7 +16,7 @@ class CouponController extends Controller
      */
     public function index()
     {
-        $coupons = Coupon::all();
+        $coupons = Auth::user()->coupons()->get();
         return Response::json($coupons);
     }
 

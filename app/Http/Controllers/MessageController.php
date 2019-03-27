@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Message;
 use Illuminate\Support\Facades\Response;
+use Auth;
 
 class MessageController extends Controller
 {
@@ -40,8 +41,8 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         if (Auth::user()->can('add-message')) {
-            $data = $request->only(['content', 'message']);
-            if (Auth::user()->fromMessage()->create($data)) {
+            $data = $request->only(['content', 'message', 'receiver_id']);
+            if (Auth::user()->fromMessages()->create($data)) {
                 // TODO: bind sent event
                 return Response::json(['message' => 'Message sent']);
             }
@@ -58,8 +59,9 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        $messages = Auth::user()->fromMessage()->where('receiver_id', '=', $id)->get();
-        return Response::json($messages);
+        $sender = Auth::user()->fromMessages()->where('receiver_id', $id)->get();
+        $receiver = Auth::user()->toMessages()->where('sender_id', $id)->get();
+        return Response::json(compact(['sender', 'receiver']));
     }
 
     /**

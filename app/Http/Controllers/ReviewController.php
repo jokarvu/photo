@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Review;
 use Illuminate\Support\Facades\Response;
+use Auth;
 
 class ReviewController extends Controller
 {

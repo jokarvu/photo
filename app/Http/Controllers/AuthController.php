@@ -55,6 +55,7 @@ class AuthController extends Controller
     {
         if (Auth::guest()) {
             $data = $request->only(['name', 'email', 'password', 'role_id']);
+            $data['status'] = 1;
             if (User::create($data)) {
                 return Response::json(['message' => 'Registered successfully']);
             }

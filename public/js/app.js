@@ -1833,7 +1833,8 @@ __webpack_require__.r(__webpack_exports__);
       multiple: true,
       closeOnSelect: false,
       matcher: this.matchCustom,
-      placeholder: 'Select books..'
+      placeholder: 'Select tags..',
+      theme: 'classic'
     }).on('change', function () {
       self.$emit('tag_change', $('#tags').val());
     });
@@ -2272,6 +2273,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     uploadImage: function uploadImage() {
+      var _this2 = this;
+
       console.log(this.selected_tags);
       var formData = new FormData();
 
@@ -2286,20 +2289,22 @@ __webpack_require__.r(__webpack_exports__);
         formData.append('images[]', item, item.name);
       });
       axios.post('/api/image', formData).then(function (res) {
-        toastr.success(res.data.message); // this.$router.go(-1);
+        toastr.success(res.data.message);
+
+        _this2.$router.go(-1);
       }).catch(function (error) {
         toastr.error(error);
         console.log(error);
       });
     },
     fileChange: function fileChange(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       var files = e.target.files || e.dataTransfer.files;
       Array.from(files).forEach(function (file) {
-        _this2.tmp_url.push(URL.createObjectURL(file));
+        _this3.tmp_url.push(URL.createObjectURL(file));
 
-        _this2.images.push(file);
+        _this3.images.push(file);
       });
     },
     tag_change: function tag_change(e) {

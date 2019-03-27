@@ -45,12 +45,8 @@ class OptionController extends Controller
     public function store(OptionStoreRequest $request)
     {
         if (Auth::user()->can('add-option')) {
-            $option = new Option();
-            $option->photographer_id = Auth::id();
-            $option->name = $request->input('name');
-            $option->price = $request->input('price');
-            $option->description = $request->input('description');
-            if ($option->save()) {
+            $data = $request->only(['name', 'price', 'description']);
+            if (Auth::user()->options()->create($data)) {
                 return Response::json(['message' => 'Option has been added']);
             }
             return Response::json(['message' => 'Something went wrong'], 422);
@@ -66,7 +62,7 @@ class OptionController extends Controller
      */
     public function show($id)
     {
-        if (Auth::user()->can('view-options')) {
+        if (Auth::user()->can('view-option')) {
             $option = Option::find($id);
             if ($option) {
                 return Response::json($option);
