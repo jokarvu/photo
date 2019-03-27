@@ -11,6 +11,8 @@
 |
 */
 
+Auth::loginUsingId(1);
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -32,6 +34,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('image', 'ImageController');
     Route::resource('option', 'OptionController');
     Route::resource('review', 'ReviewController');
+    Route::resource('coupon', 'CouponController')->middleware('authorization');
+    Route::resource('message', 'MessageController')->middleware('authorization');
 });
 
 

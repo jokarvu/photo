@@ -102,6 +102,11 @@ class User extends Authenticatable
         return $this->hasMany(Option::class, 'photographer_id');
     }
 
+    public function coupons()
+    {
+        return $this->hasMany(Coupon::class);
+    }
+
     // Permission check
     public function hasPermission(Permission $permission)
     {
@@ -118,6 +123,12 @@ class User extends Authenticatable
     public function hasReview(Review $review)
     {
         return !! optional(optional($this->reviewFrom)->contains($review));
+    }
+
+    // Coupon check
+    public function hasCoupon(Coupon $coupon)
+    {
+        return !! optional(optional($this->coupons)->contains($coupon));
     }
 
 

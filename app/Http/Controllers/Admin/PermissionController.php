@@ -118,9 +118,8 @@ class PermissionController extends Controller
         if (Auth::user()->can('edit-permission')) {
             $permission = Permission::find($id);
             if ($permission) {
-                $permission->name = $request->input('name');
-                $permission->description = $request->input('description');
-                if ($permission->save()) {
+                $data = $request->only(['name', 'desciption']);
+                if ($permission->update($data)) {
                     // Update roles of permission
                     if ($request->has('permission_roles')) {
                         $permission_roles = $request->input('permission_roles');

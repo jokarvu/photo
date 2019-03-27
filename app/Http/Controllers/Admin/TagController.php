@@ -108,8 +108,8 @@ class TagController extends Controller
         if (Auth::user()->can('edit-tag')) {
             $tag = Tag::find($id);
             if ($tag) {
-                $tag->name = $request->input('name');
-                if ($tag->save()) {
+                $data = $request->only(['name']);
+                if ($tag->update($data)) {
                     return Response::json(['message' => 'Tag has been updated']);
                 }
                 return Response::json(['message' => 'Tag not found'], 404);

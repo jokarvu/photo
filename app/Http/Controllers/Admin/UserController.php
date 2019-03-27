@@ -139,7 +139,7 @@ class UserController extends Controller
         if (Auth::user()->can('remove-user')) {
             $user = User::find($id);
             if ($user->delete()) {
-                return Response::json(['message' => 'You has been removed']);
+                return Response::json(['message' => 'User has been removed']);
             }
             return Response::json(['message' => 'Something went wrong'], 422);
         }

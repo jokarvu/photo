@@ -10,4 +10,9 @@ class Coupon extends Model
     {
         return $this->hasMany(Hire::class);
     }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

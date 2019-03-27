@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Response;
 use App\Http\Requests\LocationStoreRequest;
 use Auth;
 use App\Tag;
+use App\Http\Requests\LocationUpdateRequest;
 
 class LocationController extends Controller
 {
@@ -109,7 +110,7 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LocationUpdateRequest $request, $id)
     {
         if (Auth::user()->can('edit-location')) {
             $location = Location::find($id);
