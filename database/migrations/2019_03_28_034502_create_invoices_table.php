@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHiresTable extends Migration
+class CreateInvoicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateHiresTable extends Migration
      */
     public function up()
     {
-        Schema::create('hires', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('photographer_id')->unsigned();
-            $table->float('hours');
-            $table->double('wage');
+            $table->double('subtotal');
             $table->bigInteger('coupon_id')->unsigned()->nullable();
+            $table->double('total');
+            $table->timestamp('start')->nullable();
+            $table->timestamp('end')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
         });
@@ -32,6 +34,6 @@ class CreateHiresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hires');
+        Schema::dropIfExists('invoices');
     }
 }

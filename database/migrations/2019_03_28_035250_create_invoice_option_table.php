@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHireOptionTable extends Migration
+class CreateInvoiceOptionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateHireOptionTable extends Migration
      */
     public function up()
     {
-        Schema::create('hire_option', function (Blueprint $table) {
+        Schema::create('invoice_option', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('hire_id')->unsigned();
+            $table->bigInteger('invoice_id')->unsigned();
             $table->bigInteger('option_id')->unsigned();
+            $table->string('option_name');
+            $table->double('price');
             $table->text('note')->nullable();
             $table->timestamps();
         });
@@ -29,6 +31,6 @@ class CreateHireOptionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hire_option');
+        Schema::dropIfExists('invoice_option');
     }
 }

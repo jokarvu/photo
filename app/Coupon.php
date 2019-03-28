@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Coupon extends Model
 {
     protected $fillable = ['name', 'offer', 'discount', 'description', 'code', 'user_id'];
-    public function hires()
+    public function invoices()
     {
-        return $this->hasMany(Hire::class);
+        return $this->hasMany(Invoice::class);
     }
 
     public function owner()

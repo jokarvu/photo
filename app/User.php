@@ -80,16 +80,15 @@ class User extends Authenticatable
         return $this->hasMany(Review::class, 'photographer_id');
     }
 
-    public function hires()
+    public function fromInvoices()
     {
-        // Hire
-        return $this->hasMany(Hire::class);
+        // invoice create by user
+        return $this->hasMany(Invoice::class);
     }
 
-    public function hisHires()
+    public function toInvoices()
     {
-        // Be hired
-        return $this->hasMany(Hire::class, 'photographer_id');
+        return $this->hasMany(Invoice::class, 'photographer_id');
     }
 
     public function tags()

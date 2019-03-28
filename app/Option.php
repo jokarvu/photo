@@ -8,8 +8,8 @@ class Option extends Model
 {
     protected $fillable = ['name', 'price', 'description'];
     
-    public function hires()
+    public function invoices()
     {
-        return $this->belongsToMany(Hire::class);
+        return $this->belongsToMany(Invoice::class);
     }
 }

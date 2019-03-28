@@ -22,6 +22,8 @@ class CreateCouponsTable extends Migration
             // Discount money
             $table->double('discount')->nullable();
             $table->text('description')->nullable();
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->timestamps();
         });
     }
