@@ -11,7 +11,7 @@
 |
 */
 
-// Auth::loginUsingId(1);
+Auth::loginUsingId(1);
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,6 +23,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('auth/register', 'AuthController@register');
     Route::get('auth/logout', 'AuthController@logout')->middleware('authorization');
     Route::get('auth/dashboard', 'AuthController@dashboard')->middleware('authorization');
+    Route::get('auth/user', 'AuthController@user')->middleware('authorization');
     Route::get('auth/guest', 'AuthController@guest');
     Route::group(['prefix' => 'admin', 'middleware' => ['authorization']], function () {
         Route::resource('permission', 'Admin\PermissionController');
@@ -36,6 +37,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('review', 'ReviewController');
     Route::resource('coupon', 'CouponController')->middleware('authorization');
     Route::resource('message', 'MessageController')->middleware('authorization');
+    Route::resource('invoice', 'InvoiceController')->middleware('authorization');
 });
 
 

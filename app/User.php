@@ -130,6 +130,10 @@ class User extends Authenticatable
         return !! optional(optional($this->coupons)->contains($coupon));
     }
 
+    public function hasInvoice(Invoice $invoice)
+    {
+        return !! optional($this->fromInvoices)->contains($invoice) || !! optional($this->toInvoices)->contains($invoice);
+    }
 
     // Mutators
     public function setPasswordAttribute($value)

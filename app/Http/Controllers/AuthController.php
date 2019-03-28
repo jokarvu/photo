@@ -63,4 +63,9 @@ class AuthController extends Controller
         }
         return Response::json(['message' => 'You have logged in'], 401);
     }
+
+    public function user()
+    {
+        return Auth::user();
+    }
 }
